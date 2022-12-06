@@ -3,18 +3,21 @@ pragma solidity ^ 0.8.13;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract Turing{
+contract Turing is ERC20{
     address prof;
     address owner;
     bool voting;
 
+    mapping(string => mapping(string => bool)) public already_voted;
+    
     mapping(string => address) public address_map;
-    mapping(string => address) public codiname_map;
+    mapping(address => string) public codiname_map;
 
     constructor() ERC20("Turing", "TUR"){
         voting = true;
         owner = msg.sender;
-        prof = 0xA5095296F7fF9Bdb01c22e3E0aC974C8963378ad;
+        //prof = 0xA5095296F7fF9Bdb01c22e3E0aC974C8963378ad; //true
+        prof = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4; // test
 
         address_map["Andre"] = 0xD07318971e2C15b4f8d3d28A0AEF8F16B9D8EAb6;
         address_map["Antonio"] = 0x127B963B9918261Ef713cB7950c4AD16d4Fe18c6;
@@ -57,6 +60,11 @@ contract Turing{
         codiname_map[0x89e66f9b31DAd708b4c5B78EF9097b1cf429c8ee] = "ulopesu";
         codiname_map[0x48cd1D1478eBD643dba50FB3e99030BE4F84d468] = "Vinicius";
         codiname_map[0xFADAf046e6Acd9E276940C728f6B3Ac1A043054c] = "Bonella";
+
+        address_map["Teste1"] = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
+        address_map["Teste2"] = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2;
+        codiname_map[0x5B38Da6a701c568545dCfcB03FcB875f56beddC4] = "Teste1";
+        codiname_map[0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2] = "Teste2";
     }
     
     modifier onlyProf {
@@ -65,30 +73,32 @@ contract Turing{
     }
 
     modifier voteEspecifications(string memory receptor, uint256 qtd_sa_Turings) {
-        require(qtd_sa_Turings < 2*10**18 && qtd_sa_Turings > 0); //verifica se a quantidade de turings está adequada
-        require(receptor != codiname_map[msg.sender]); //verifica se o receptor não é o mesmo que quem enviou
-        require(voting) //verifica se a votação esta aberta
-        require(true) // TODO verifica se sender ja votou no receptor
-        require(true) // TODO verifica se o receptor é válido 
-        require(true) // TODO verifica se o sender é valido
+        require(address_map[receptor] != 0x0000000000000000000000000000000000000000);   //verifica se o receptor é válido 
+        require(bytes(codiname_map[msg.sender]).length > 0);                            //verifica se o sender é valido
+        require(qtd_sa_Turings < 2*10**18 && qtd_sa_Turings > 0);                       //verifica se a quantidade de turings está adequada
+        require(address_map[receptor] != msg.sender);                                   //verifica se o receptor não é o mesmo que quem enviou
+        require(voting);                                                                //verifica se a votação esta aberta
+        require(already_voted[codiname_map[msg.sender]][receptor] != true);             //verifica se sender ja votou no receptor
         _;
     }
 
-
-    function issueToken(address receptor_voto, int qtd_sa_Turings) public{
-        if(msg.sender = prof){
-            _mint(address_map[receptor_voto], qtd_sa_Turings);
-        }
+    function issueToken(address receptor_voto, uint256 qtd_sa_Turings) public onlyProf{ 
+        _mint(receptor_voto, qtd_sa_Turings); // Cria a quantidade de turings para o receptor
+    }
+    
+    function endVoting() public onlyProf{ 
+        voting = false; // Termina a votação
     }
 
-    function vote(string memory receptor, uint256 qtd_sa_Turings) public voteEspecifications{
-        _mint(address_map[receptor], 2 * 10^17); // Retorna os 0,2 Turings para quem enviou o voto
+    function vote(string memory receptor, uint256 qtd_sa_Turings) public voteEspecifications(receptor, qtd_sa_Turings){
+        _mint(msg.sender, 2 * 10**17); // Retorna os 0,2 Turings para quem enviou o voto
         _mint(address_map[receptor], qtd_sa_Turings); // Cria a quantidade de turings para o receptor
 
-        //TODO atualizar lista de usuarios votados
+        already_voted[codiname_map[msg.sender]][receptor] = true; //TODO atualizar lista de usuarios votados
     }
 
-    function endVoting() public onlyProf{
-        voting = false;
-    }
+
+    function check() public view returns(address){ // Função de teste
+        return address_map["falso"];
+    } 
 }
