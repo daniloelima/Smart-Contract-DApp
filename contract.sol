@@ -59,6 +59,20 @@ contract Turing{
         codiname_map[0xFADAf046e6Acd9E276940C728f6B3Ac1A043054c] = "Bonella";
     }
     
+    modifier onlyProf {
+        require(msg.sender == prof);
+        _;
+    }
+
+    modifier voteEspecifications(string memory receptor, uint256 qtd_sa_Turings) {
+        require(qtd_sa_Turings < 2*10**18 && qtd_sa_Turings > 0); //verifica se a quantidade de turings está adequada
+        require(receptor != codiname_map[msg.sender]); //verifica se o receptor não é o mesmo que quem enviou
+        require(voting) //verifica se a votação esta aberta
+        require(true) // TODO verifica se sender ja votou no receptor
+        require(true) // TODO verifica se o receptor é válido 
+        require(true) // TODO verifica se o sender é valido
+        _;
+    }
 
 
     function issueToken(address receptor_voto, int qtd_sa_Turings) public{
@@ -67,22 +81,14 @@ contract Turing{
         }
     }
 
-    function vote(string receptor, int qtd_sa_Turings){
-        if (voting == true){
-            if(receptor != codiname_map[msg.sender]){
-                _mint(address_map[receptor], 2 * 10^17); // Retorna os 0,2 Turings para quem enviou o voto
-                if(qtd_sa_Turings > 2 * 10 ^ 17){
-                    _mint(address_map[receptor], 2 * 10^18);
-                }else{
-                    _mint(address_map[receptor], qtd_sa_Turings); // Cria a quantidade de turings para o receptor
-                }
-            }
-        }
+    function vote(string memory receptor, uint256 qtd_sa_Turings) public voteEspecifications{
+        _mint(address_map[receptor], 2 * 10^17); // Retorna os 0,2 Turings para quem enviou o voto
+        _mint(address_map[receptor], qtd_sa_Turings); // Cria a quantidade de turings para o receptor
+
+        //TODO atualizar lista de usuarios votados
     }
 
-    function endVoting(){
-        if(msg.sender == prof){
-            voting = false;
-        }
+    function endVoting() public onlyProf{
+        voting = false;
     }
 }
