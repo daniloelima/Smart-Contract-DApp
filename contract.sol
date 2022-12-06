@@ -61,9 +61,15 @@ contract Turing is ERC20{
         codiname_map[0x48cd1D1478eBD643dba50FB3e99030BE4F84d468] = "Vinicius";
         codiname_map[0xFADAf046e6Acd9E276940C728f6B3Ac1A043054c] = "Bonella";
 
+<<<<<<< HEAD
         address_map["Teste1"] = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
         address_map["Teste2"] = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2;
         codiname_map[0x5B38Da6a701c568545dCfcB03FcB875f56beddC4] = "Teste1";
+=======
+        address_map["Teste1"] = 0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db;
+        address_map["Teste2"] = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2;
+        codiname_map[0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db] = "Teste1";
+>>>>>>> 210293d32d757820c0e13aba20aec111f617b5e7
         codiname_map[0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2] = "Teste2";
     }
     
