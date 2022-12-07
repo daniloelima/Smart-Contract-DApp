@@ -6,65 +6,43 @@ HTML
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="src/style.css">
   <title>Turing DApp</title>
 </head>
 
 <body>
 
   <div class="sidenav">
-    <h1>Votação Turing</h1>
-    <a href="#students">Aluno(a)</a>
-    <a href="#professor">Professora</a>
-    <a href="#statistics">Estatistica</a>
+    <a href="#home" onclick="togglePage('Home')"><h1>Turing Vote Pool</h1></a>
+    <a href="#students" onclick="togglePage('Students')">Student</a>
+    <a href="#professor" onclick="togglePage('Teacher')">Teacher</a>
+    <a href="#statistics" onclick="togglePage('Stats')">Statistics</a>
   </div>
   
   <div class="main">
     <br>
     <br>
     <div class="extern">
-      <div class="formdiv center">
-        <form>
-          <div id="users" class="votantes center">
-            <label for="users">Usuários</label><br>
-            <select name="votantes" id="receiver">
-              <option value="Andre">Andre</option>
-              <option value="Antonio">Antonio</option>
-              <option value="Ratonilo">Ratonilo</option>
-              <option value="eduardo">eduardo</option>
-              <option value="Enzo">Enzo</option>
-              <option value="Fernando">Fernando</option>
-              <option value="Juliana">Juliana</option>
-              <option value="Altoe">Altoe</option>
-              <option value="Salgado">Salgado</option>
-              <option value="Regata">Regata</option>
-              <option value="Luis">Luis</option>
-              <option value="Nicolas">Nicolas</option>
-              <option value="Rauta">Rauta</option>
-              <option value="Silva">Silva</option>
-              <option value="Sophie">Sophie</option>
-              <option value="Thiago">Thiago</option>
-              <option value="Brito">Brito</option>
-              <option value="ulopesu">ulopesu</option>
-              <option value="Vinicius">Vinicius</option>
-              <option value="Bonella">Bonella</option>
-            </select>
-          </div>
-
-          <div class="saTurings center">
-            <label for="turing">Quantidade de Turings</label><br>
-            <input id="turing" type="number" step="any" min="0.000000000000000001" max="2">
-          </div>
-  
-          <div class="botao">
-            <button type="button" id="vote_button">confirma</button>
-          </div>
-        </form>
+      <div class="Home" id="Home">
+        <div w3-include-html="src/home.html"></div>
+      </div>
+      <div class="Students" id="Students">
+        <div w3-include-html="src/student.html"></div>
+      </div>
+      <div class="Teacher" id="Teacher">
+        <div w3-include-html="src/teacher.html"></div>
+      </div>
+      <div class="Stats" id="Stats">
+        <div w3-include-html="src/stats.html"></div>
       </div>
     </div>
   </div>
     <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
-    <script src="index.js"></script>
+    <script src="src/script.js"></script>
+    <script src="src/contract.js"></script>
+    <script>
+      includeHTML();
+    </script>
   </body>
 
 </html>

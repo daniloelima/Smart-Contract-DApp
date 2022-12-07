@@ -1,12 +1,14 @@
-<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="style.css">
+<div class="extern">
+
 
 <div class="formdiv center">
     <form>
         <div id="Title" class="center">
-            <h1>Vote in your colleagues</h1>
+            <h2>Vote in your colleagues</h2>
         </div>  
       <div id="users" class="votantes center">
-        <label for="users">Usuários</label><br>
+        <label for="users">Users</label><br>
         <select name="votantes" id="receiver">
           <option value="Andre">Andre</option>
           <option value="Antonio">Antonio</option>
@@ -32,12 +34,14 @@
       </div>
 
       <div class="saTurings center">
-        <label for="turing">Quantidade de Turings</label><br>
+        <label for="turing">Turings Ammount</label><br>
         <input id="turing" type="number" step="any" min="0.000000000000000001" max="2">
       </div>
 
       <div class="botao">
-        <button type="button" id="vote_button">confirma</button>
+        <button type="button" id="vote_button" onclick="setNewVote()">Confirm</button>
       </div>
     </form>
   </div>
+</div>
+

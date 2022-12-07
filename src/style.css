@@ -1,29 +1,72 @@
 CSS
 
 body {
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 0;
+    height: 100vh;
+    background-color: #FFCADF;
 }
 
 label{
   margin-bottom: 10px;
 }
 
+header {
+  position: absolute;
+  width: 100%; height: 0px;
+  top: 0; left: 0;
+}
+
+button {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 3px;
+  color: black;
+  padding: 10px 16px;
+  text-align: center;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: whitesmoke;
+  border: 1px solid black;
+  border-radius: 3px;
+  color: black;
+  padding: 10px 16px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.main {
+  height: 100vh;
+  width: 90%;
+  margin-right: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 250px;
+  background-color: #FFCADF;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
 .sidenav h1 {
-  padding: 6px 8px 6px 16px;
+  text-align: center;
   text-decoration: none;
   font-size: 35px;
-  color: white;
+  color: black;
   display: block;
 }
 
 .sidenav {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   height: 100%;
-  width: 200px;
+  width: 250px;
   position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: #AAFFC6;
   overflow-x: hidden;
   padding-top: 20px;
 }
@@ -49,7 +92,7 @@ label{
   width: 100%;  
   padding: 3px;
   background: #000000;
-  color: white;
+  color: whitesmoke;
   font-size: 20px;
 }
 
@@ -60,13 +103,14 @@ label{
 }
 
 .formdiv {
+    min-width: 400px;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: auto;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: lightblue;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: #AAFFC6;
     border:1px solid black;
     padding: 15px;
     width: 30%
@@ -79,10 +123,14 @@ label{
   padding: 5px;
 }
 
+.Students, .Teacher, .Stats {
+  display: none;
+}
+
 input[type="number"]{
     width: 300px;
     padding: 12px;
-    background-color: whitesmoke;
+    background-color: white;
     border: 1px solid #000000;
     border-radius: 7px;
 }
@@ -93,7 +141,7 @@ select {
   border-radius: 7px;
   width: 300px;
   padding: 12px;
-  background-color: whitesmoke;
+  background-color: white;
   /* needed */
   -webkit-appearance: none;
   -moz-appearance: none;

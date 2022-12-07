@@ -415,10 +415,6 @@ provider.send("eth_requestAccounts", []).then(() => {
 });
 
 
-//
-const voteButton = document.querySelector("#vote_button");
-
-
 /* 5. realize a new vote */
 const setNewVote = () => {
     /* 5.1 Get inputs from pet form */
@@ -442,10 +438,7 @@ const setNewVote = () => {
         });
 };
 
-/* Function to set pet details on click of button */
-voteButton.addEventListener("click", setNewVote);
-
-/* 5. realize a new vote */
+/* 5. realize a new issueToken */
 const setIssueToken = () => {
     /* 5.1 Get inputs from pet form */
     const receptor_Input = document.querySelector("#receiverIssueToken");
@@ -458,7 +451,7 @@ const setIssueToken = () => {
     qtd_sa_Turings = "10";
     console.log("Receptor:", receptorNome, "Qtd:", qtd_sa_Turings);
     /* 5.3 Call the contract and reset */
-    TuringContract.vote(receptorNome, qtd_sa_Turings)
+    TuringContract.issueToken(receptorNome, qtd_sa_Turings)
         .then(() => {
             receptor_Input.value = "Andre";
             qtd_sa_Turings_Input.value = "";
@@ -469,45 +462,12 @@ const setIssueToken = () => {
         });
 };
 
-// /* 6. Function to get pet details */
-// const getCurrentPet = async () => {
-//   setPetButton.value = "Getting Pet...";
-
-//   /* 6.1 Get pet details from smart contract */
-//   const pet = await TuringContract.getPet();
-
-//   /* 6.2 Display the pet details section 
-//   and
-//   Hide the pet form in the DOM */
-//   petSection.style.display = "block";
-//   petFormSection.style.display = "none";
-
-//   /* 6.3 Pet is an array of 3 strings [petName, petOwner, petAge] */ // ARRAY TA NA ORDEM -> AGE, NAME, OWNER
-  
-//   const petName = pet[1];
-//   const petOwner = pet[2];
-//   const petAge = pet[0];
-
-//   /* 6.4 Display pet details in DOM */
-//   document.querySelector(".pet-detail-name").innerText = petName;
-//   document.querySelector(".pet-detail-owner").innerText = petOwner;
-//   document.querySelector(".pet-detail-age").innerText = petAge;
-// };
-
-// /* 7. Function to show the pet form on click of button */
-// showPetFormBtn.addEventListener("click", () => {
-//   petSection.style.display = "none";
-//   petFormSection.style.display = "block";
-//   setPetButton.value = "Submit";
-// });
-
-// /* 8. Function to refresh pet details */
-// refreshBtn.addEventListener("click", (e) => {
-//   e.target.innerText = "Refreshing...";
-//   getCurrentPet().then(() => {
-//     e.target.innerText = "Refreshed";
-//     setTimeout(() => {
-//       e.target.innerText = "Refresh";
-//     }, 2000);
-//   });
-// });
+const endVoting = () => {
+    TuringContract.endVoting()
+        .then(() => {
+            alert("Terminando Votação...");
+        })
+        .catch((err) => {
+            alert("Error ending voting" + err.message);
+        });
+};
