@@ -16,8 +16,8 @@ contract Turing is ERC20{
     constructor() ERC20("Turing", "TUR"){
         voting = true;
         owner = msg.sender;
-        //prof = 0xA5095296F7fF9Bdb01c22e3E0aC974C8963378ad; //true
-        prof = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4; // test
+        prof = 0xA5095296F7fF9Bdb01c22e3E0aC974C8963378ad;
+        // prof = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4; // test only
 
         address_map["Andre"] = 0xD07318971e2C15b4f8d3d28A0AEF8F16B9D8EAb6;
         address_map["Antonio"] = 0x127B963B9918261Ef713cB7950c4AD16d4Fe18c6;
@@ -61,16 +61,11 @@ contract Turing is ERC20{
         codiname_map[0x48cd1D1478eBD643dba50FB3e99030BE4F84d468] = "Vinicius";
         codiname_map[0xFADAf046e6Acd9E276940C728f6B3Ac1A043054c] = "Bonella";
 
-<<<<<<< HEAD
-        address_map["Teste1"] = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
-        address_map["Teste2"] = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2;
-        codiname_map[0x5B38Da6a701c568545dCfcB03FcB875f56beddC4] = "Teste1";
-=======
-        address_map["Teste1"] = 0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db;
-        address_map["Teste2"] = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2;
-        codiname_map[0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db] = "Teste1";
->>>>>>> 210293d32d757820c0e13aba20aec111f617b5e7
-        codiname_map[0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2] = "Teste2";
+        // // Used for Test Only
+        // address_map["Teste1"] = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;  
+        // address_map["Teste2"] = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2;
+        // codiname_map[0x5B38Da6a701c568545dCfcB03FcB875f56beddC4] = "Teste1";
+        // codiname_map[0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2] = "Teste2";
     }
     
     modifier onlyProf {
