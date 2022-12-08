@@ -2,7 +2,7 @@
 let TuringContract;
 
 // 2. Set contract address and ABI
-const tContract_Address = "0x5A0d3d4406ca9d5505aB0D41e9486Fe6053bcdE1";
+const tContract_Address = "0xC7E95C342161801BA2CCCEBdf3709619c75f66Bd";
 const tContract_ABI = [
 	{
 		"inputs": [],
@@ -164,19 +164,6 @@ const tContract_ABI = [
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "check",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
 			}
 		],
 		"stateMutability": "view",
@@ -396,6 +383,19 @@ const tContract_ABI = [
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "voting",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
 	}
 ];
 
@@ -415,18 +415,18 @@ provider.send("eth_requestAccounts", []).then(() => {
 });
 
 
-/* 5. realize a new vote */
+/* 4. realize a new vote */
 const setNewVote = () => {
-    /* 5.1 Get inputs from pet form */
+    /* 4.1 Get inputs from pet form */
     const receptor_Input = document.querySelector("#receiver");
     const qtd_sa_Turings_Input = document.querySelector("#turing");
 
-    // 5.2 Getting values from the inputs
+    // 4.2 Getting values from the inputs
     receptorNome = receptor_Input.options[receptor_Input.selectedIndex].value;
     qtd_sa_Turings = String(Number(qtd_sa_Turings_Input.value)*10**18);
 
     console.log("Receptor:", receptorNome, "Qtd:", qtd_sa_Turings);
-    /* 5.3 Call the contract and reset */
+    /* 4.3 Call the contract and reset */
     TuringContract.vote(receptorNome, qtd_sa_Turings)
         .then(() => {
             receptor_Input.value = "Andre";
@@ -448,7 +448,6 @@ const setIssueToken = () => {
     receptorNome = receptor_Input.options[receptor_Input.selectedIndex].value;
     qtd_sa_Turings = String(Number(qtd_sa_Turings_Input.value)*10**18);
 
-    qtd_sa_Turings = "10";
     console.log("Receptor:", receptorNome, "Qtd:", qtd_sa_Turings);
     /* 5.3 Call the contract and reset */
     TuringContract.issueToken(receptorNome, qtd_sa_Turings)
@@ -462,6 +461,7 @@ const setIssueToken = () => {
         });
 };
 
+/* 6. end voting poll */
 const endVoting = () => {
     TuringContract.endVoting()
         .then(() => {
@@ -471,3 +471,16 @@ const endVoting = () => {
             alert("Error ending voting" + err.message);
         });
 };
+
+// var ammount_value = 0;
+
+// /* 7. Function to get pet details */
+// const getStudentTuring = async (addr) => {
+// 	/* 6.1 Get pet details from smart contract */
+// 	try {
+// 		const ammount = await TuringContract.balanceOf(addr);
+// 		ammount_value = ammount;
+// 	} catch (error) {
+// 		alert("Erro geting turings");
+// 	}
+// };

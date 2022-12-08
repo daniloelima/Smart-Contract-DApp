@@ -34,3 +34,14 @@ function togglePage(id) {
 
     document.getElementById(id).style.display           = 'block';
 }
+
+
+// function genTable() {
+  
+//   for(student in Students){
+//     getStudentTuring(student);
+
+
+//   }
+
+// }
